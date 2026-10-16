@@ -1,8 +1,8 @@
 # Westwood Women’s Soccer Boosters: Website Handbook
 
-**Live site:** https://wwsboosters.org
-**Club email (owns every account):** wwsbooster@gmail.com
-**Last updated:** October 2026
+- **Live site:** https://wwsboosters.org
+- **Club email (owns every account):** wwsbooster@gmail.com
+- **Last updated:** October 2026
 
 This handbook is for whoever keeps the booster website up to date. You don’t need to know how to code. Everything visitors see comes from one file, **index.html**, in this repository.
 
@@ -32,11 +32,13 @@ Every account is registered to **wwsbooster@gmail.com**. Handing over that email
 Pick whichever is easier for you.
 
 **Option A: Ask Claude to do it (easiest)**
+
 1. In Claude, connect GitHub (the GitHub app at github.com/apps/claude) and give it access to the `westwood-soccer-boosters` organization, `website` repository.
 2. In a Claude chat, say what to change, for example: *“In westwood-soccer-boosters/website, add the result: Varsity beat Cedar Ridge 2–1.”*
 3. Claude edits index.html and publishes it. The live site updates within 1–2 minutes.
 
 **Option B: Upload it yourself**
+
 1. On GitHub, open `website`, click **index.html**, then the **download** button.
 2. Attach that file to any Claude chat and ask for the change.
 3. Back on GitHub, click **Add file → Upload files**, drag in the new index.html (it replaces the old one), then **Commit changes**.
