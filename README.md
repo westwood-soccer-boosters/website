@@ -2,7 +2,7 @@
 
 - **Live site:** https://wwsboosters.org
 - **Club email (owns every account):** wwsbooster@gmail.com
-- **Last updated:** October 2026
+- **Last updated:** October 2026 (2026–27 season)
 
 This handbook is for whoever keeps the booster website up to date. You don’t need to know how to code. Everything visitors see comes from one file, **index.html**, in this repository.
 
@@ -12,13 +12,15 @@ This handbook is for whoever keeps the booster website up to date. You don’t n
 
 Every account is registered to **wwsbooster@gmail.com**. Handing over that email hands over everything below.
 
+The accounts stay the same from year to year. The **links marked “2026–27 only”** are this season’s pages and must be replaced with the new season’s links (see section 5).
+
 | What | Where | Notes |
 |---|---|---|
 | Domain name (wwsboosters.org) | **Porkbun** (porkbun.com) | Auto-renew ON. Renews once a year, under $12. Don’t change the DNS records (see section 6). |
 | Website hosting | **GitHub**: organization `westwood-soccer-boosters`, repository `website` | Free. GitHub Pages publishes the `main` branch automatically. |
-| Dues, fees, team meals | **Cheddar Up** | https://team-booster-2026-2027.cheddarup.com |
-| Sponsorships | **Cheddar Up** | https://team-sponsorship-2026-copy-25932.cheddarup.com |
-| Volunteer and committee sign-ups | **SignUpGenius** | https://www.signupgenius.com/go/10C0949AEAE22A3FEC52-66751535-westwood. Committees use an **access code**, shared in the team app only. **Never put the code on the website.** |
+| Dues, fees, team meals | **Cheddar Up** | A new page each season. **2026–27 only:** https://team-booster-2026-2027.cheddarup.com |
+| Sponsorships | **Cheddar Up** | A new page each season. **2026–27 only:** https://team-sponsorship-2026-copy-25932.cheddarup.com |
+| Volunteer and committee sign-ups | **SignUpGenius** | New sign-ups each season. **2026–27 only:** https://www.signupgenius.com/go/10C0949AEAE22A3FEC52-66751535-westwood. Committees use an **access code**, shared in the team app only. **Never put the code on the website.** |
 | Reimbursements | **Google Form** | Linked from the Support section |
 | Donations | **Square** | Not set up yet. The Donate button was removed until it is. |
 | Game-day info for team families | **Team app** (Stack Team App) | The team app is the source of truth for times and changes. The website says so in two places. |
@@ -84,8 +86,9 @@ You can tell Claude these names, or search for them if you edit the file yoursel
 - [ ] Replace the schedule (`EVENTS`) with the new season’s games, and update the playoff dates.
 - [ ] Clear last season’s scores (`RESULTS`) and rosters (`ROSTER`).
 - [ ] Update meeting months (`MEETINGS`) and the board names.
-- [ ] Make new Cheddar Up pages (dues, sponsorship) and update both links.
-- [ ] Make new SignUpGenius sign-ups and update the links. Set a new committee access code.
+- [ ] Make new Cheddar Up pages (dues, sponsorship) and replace both links on the site and in section 1. This season’s links will stop being the right ones.
+- [ ] Make new SignUpGenius sign-ups, replace the links on the site and in section 1, and set a new committee access code.
+- [ ] Check the reimbursement form still works, or link a new one.
 - [ ] Renew or remove sponsors, and check the sponsor perks still match Cheddar Up.
 - [ ] Change “2026–27” wherever it appears.
 
