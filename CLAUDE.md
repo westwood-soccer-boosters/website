@@ -15,6 +15,7 @@ This repository is the live site at https://wwsboosters.org, published by GitHub
 - `ROSTER`: `{varsity:[{num,name,pos,grad}], jv:[...]}`. Minors: post only number, name, position and graduation year.
 - `SPONSORS`: `{name, tier:"warrior"|"orange"|"white", url, logo, slogan}`. Warrior and Orange get logo, link and the weekly Featured Partner spotlight; White is listed by name only.
 - `TIERS`: sponsor levels and perks. Must match the Cheddar Up sponsorship page.
+- Season-specific links: the Cheddar Up dues link (Support section), the sponsorship link (`SPONSOR_URL` and the Support card) and the SignUpGenius links (`#signups`) are for 2026–27 only. Each new season they get new links; ask the user for them rather than reusing old ones.
 - `SPOTLIGHT_PINS`: `{"<Monday YYYY-MM-DD>":"Sponsor Name"}` to pin a sponsor to a week.
 - `MAPQ`: venue name → Google Maps search text.
 - Support cards: `<section id="support">`. Volunteer sign-up list: `<div class="signups" id="signups">` (order: Committees and Coaches’ Meals, then Varsity, then JV). Board: `<ul class="board-list">`.
