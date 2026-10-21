@@ -231,6 +231,11 @@ button.day:hover{background:var(--line)}
 .su-name{grid-area:name;font-weight:700}
 .su-who{grid-area:who;color:var(--muted);font-size:.88rem}
 .su-go{grid-area:go;font-weight:700;font-size:1.1rem}
+.signups .su-soon{flex:1;display:grid;grid-template-columns:1fr auto;grid-template-areas:"name go" "who go";align-items:center;gap:0 12px;min-height:56px;padding:10px 14px;border:1px dashed var(--line);border-radius:8px;background:var(--bg);color:var(--muted)}
+.su-soon .su-name{color:var(--fg)}
+.su-later{grid-area:go;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);border:1px solid currentColor;border-radius:4px;padding:3px 8px;white-space:nowrap}
+:root[data-theme="dark"] .su-later{color:var(--varsity)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .su-later{color:var(--varsity)}}
 /* featured partner of the week */
 .spot-wrap{padding-top:24px}
 .spotlight{display:grid;grid-template-columns:auto 1fr auto;gap:12px 20px;align-items:center;background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--primary);border-radius:10px;padding:14px 18px}
@@ -391,11 +396,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <p class="signups-note">All sign-ups are on SignUpGenius. Pick a spot and you’ll get a reminder before your date.</p>
       <ul>
         <li><a href="https://www.signupgenius.com/go/10C0949AEAE22A3FEC52-66751535-westwood" target="_blank" rel="noopener"><span class="su-name">Booster Committees</span><span class="su-who">Chairs and members · Access code in the team app</span><span class="su-go" aria-hidden="true">→</span></a></li>
-        <li><a href="https://www.signupgenius.com/go/10C0949AEAE22A3FEC52-66751535-westwood" target="_blank" rel="noopener"><span class="su-name">Coaches’ Meals</span><span class="su-who">All families</span><span class="su-go" aria-hidden="true">→</span></a></li>
-        <li><a href="https://www.signupgenius.com/go/10C0949AEAE22A3FEC52-66751535-westwood" target="_blank" rel="noopener"><span class="su-name">Varsity Game Concessions</span><span class="su-who">Worked by JV parents</span><span class="su-go" aria-hidden="true">→</span></a></li>
-        <li><a href="https://www.signupgenius.com/go/10C0949AEAE22A3FEC52-66751535-westwood" target="_blank" rel="noopener"><span class="su-name">Varsity Team Dinners</span><span class="su-who">Varsity families</span><span class="su-go" aria-hidden="true">→</span></a></li>
-        <li><a href="https://www.signupgenius.com/go/10C0949AEAE22A3FEC52-66751535-westwood" target="_blank" rel="noopener"><span class="su-name">JV Game Concessions</span><span class="su-who">Worked by Varsity parents</span><span class="su-go" aria-hidden="true">→</span></a></li>
-        <li><a href="https://www.signupgenius.com/go/10C0949AEAE22A3FEC52-66751535-westwood" target="_blank" rel="noopener"><span class="su-name">JV Team Dinners</span><span class="su-who">JV families</span><span class="su-go" aria-hidden="true">→</span></a></li>
+        <li><div class="su-soon"><span class="su-name">Coaches’ Meals</span><span class="su-who">All families · Sign-up link coming soon</span><span class="su-later">Check back later</span></div></li>
+        <li><div class="su-soon"><span class="su-name">Game Day Meals</span><span class="su-who">Sign-up link coming soon</span><span class="su-later">Check back later</span></div></li>
+        <li><div class="su-soon"><span class="su-name">Varsity Game Concessions</span><span class="su-who">Worked by JV parents · Sign-up link coming soon</span><span class="su-later">Check back later</span></div></li>
+        <li><div class="su-soon"><span class="su-name">Varsity Team Dinners</span><span class="su-who">Varsity families · Sign-up link coming soon</span><span class="su-later">Check back later</span></div></li>
+        <li><div class="su-soon"><span class="su-name">JV Game Concessions</span><span class="su-who">Worked by Varsity parents · Sign-up link coming soon</span><span class="su-later">Check back later</span></div></li>
+        <li><div class="su-soon"><span class="su-name">JV Team Dinners</span><span class="su-who">JV families · Sign-up link coming soon</span><span class="su-later">Check back later</span></div></li>
       </ul>
     </div>
   </div>
