@@ -241,7 +241,7 @@ button.day:hover{background:var(--line)}
 .spotlight{display:grid;grid-template-columns:auto 1fr auto;gap:12px 20px;align-items:center;background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--primary);border-radius:10px;padding:14px 18px}
 .spotlight.open{border-style:dashed;border-top-style:solid}
 .spot-logo{width:96px;height:64px;display:grid;place-items:center;border-radius:8px;background:var(--bg);overflow:hidden}
-.spot-logo img{max-width:100%;max-height:100%;object-fit:contain}
+.spot-logo img{display:block;width:96px;height:64px;max-width:none;object-fit:contain;background:#fff}
 .spot-logo b{font-family:var(--display);text-transform:uppercase;font-size:.95rem;text-align:center;line-height:1.05;padding:4px}
 .spot-name{font-family:var(--display);text-transform:uppercase;font-size:1.45rem;font-weight:800;line-height:1.05;margin:2px 0}
 .spot-line{margin:0;color:var(--muted);font-size:.95rem}
@@ -621,7 +621,7 @@ function renderNext(){
 // Sponsors: add {name:"Business Name", tier:"warrior"|"orange"|"white", url:"https://...", logo:"logo file"} as they sign on.
 // Warrior and Orange include logo + business link on the website; White is listed by name.
 const SPONSORS=[
-  {name:"Burk Family Dentistry", tier:"orange", url:"https://www.burkfamilydentistry.com", logo:"", slogan:"Be the reason someone smiles today!"}
+  {name:"Burk Family Dentistry", tier:"orange", url:"https://www.burkfamilydentistry.com", logo:"sponsors/burk-family-dentistry.png", slogan:"Be the reason someone smiles today!"}
 ];
 const SPONSOR_URL="https://team-sponsorship-2026-copy-25932.cheddarup.com";
 const TIERS=[
