@@ -184,6 +184,9 @@ button.day:hover{background:var(--line)}
 .addcal{display:inline-block;margin-top:4px;padding-block:4px;font-weight:700;font-size:.88rem;color:var(--fg);text-underline-offset:2px}
 .dd-actions{display:flex;flex-wrap:wrap;gap:4px 16px}
 .ev-link{color:var(--primary)}
+.flyer{display:inline-flex;flex-direction:column;gap:4px;margin-top:8px;font-weight:700;font-size:.88rem;color:var(--fg);text-decoration:none}
+.flyer img{display:block;width:160px;max-width:100%;height:auto;border-radius:6px;border:1px solid var(--line)}
+.flyer:hover span{text-decoration:underline}
 :root[data-theme="dark"] .ev-link{color:var(--varsity)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ev-link{color:var(--varsity)}}
 .app-note{margin:20px 0 0;display:flex;gap:12px;align-items:center;background:var(--primary);color:#fff;border-radius:10px;padding:14px 18px;font-size:1.02rem}
@@ -460,7 +463,7 @@ const MEETING_MOVES={"2026-11-04":["2026-11-11","Moved from Wed, Nov 4"]};
 const MEETINGS=[[2026,10],[2027,0],[2027,1],[2027,2],[2027,3],[2027,4]].map(([y,m])=>{const o=firstWed(y,m),mv=MEETING_MOVES[o];return {d:mv?mv[0]:o,t:"18:00",tEnd:"19:00",title:"Booster Club Meeting",team:"all",kind:"event",...(mv&&mv[1]?{note:mv[1]}:{})}});
 const EVENTS=[
   ...MEETINGS,
-  {d:"2026-11-17",title:"Spirit Night at Everbowl",team:"all",kind:"event",where:"Everbowl, 13429 N Hwy 183 #110, Austin, TX 78750",map:"https://www.google.com/maps/search/?api=1&query=Everbowl+13429+N+Hwy+183+%23110+Austin+TX+78750",desc:"Support our team by grabbing a healthy treat at Everbowl!"},
+  {d:"2026-11-17",t:"16:00",tEnd:"20:00",title:"Spirit Night at Everbowl",team:"all",kind:"event",flyer:{src:"flyers/everbowl-spirit-night-2026-11-17.jpg",alt:"Spirit Night flyer: Westwood Girls Soccer at Everbowl, November 17, 4 to 8 PM, 13429 N US Highway 183 #110, Austin, TX 78750. 15% of all sales will be donated."},where:"Everbowl, 13429 N Hwy 183 #110, Austin, TX 78750",map:"https://www.google.com/maps/search/?api=1&query=Everbowl+13429+N+Hwy+183+%23110+Austin+TX+78750",desc:"Support our team by grabbing a healthy treat at Everbowl! 15% of all sales will be donated to Westwood Girls Soccer."},
   {d:"2026-12-01",t:"18:00",tEnd:"21:00",title:"Coats for Kids",team:"both",kind:"event",note:"Team only event",desc:"Team bonding off the field: the girls will sort coats for the 40th anniversary of Coats for Kids."},
   {d:"2026-12-10",t:"18:00",tEnd:"20:00",title:"Kick-Off Dinner",team:"all",kind:"event",where:"Westwood Cafeteria",link:{url:"https://2027-kick-off-dinner-copy.cheddarup.com",label:"Get tickets"}},
   ...pair("2026-12-11","Georgetown (Scrimmage)","Away","Georgetown High School",null,"17:15","19:00"),
@@ -532,7 +535,7 @@ function renderList(){
     if(e.bye)parts.push("Open date on the district schedule");
     return `<li class="ev">
     <div class="date" aria-hidden="true"><small>${MON[d.getMonth()]}</small><b>${d.getDate()}</b></div>
-    <div style="min-width:0"><h4><span class="sr-only">${DOWL[d.getDay()]},${MONL[d.getMonth()]} ${d.getDate()}: </span>${esc(e.title)}</h4><div class="meta">${parts.join(" · ")}</div>${e.desc?`<div class="desc">${esc(e.desc)}</div>`:""}${e.note?`<div class="note">${esc(e.note)}</div>`:""}<div class="dd-actions">${evLink(e)}${addCal(e)}</div></div>
+    <div style="min-width:0"><h4><span class="sr-only">${DOWL[d.getDay()]},${MONL[d.getMonth()]} ${d.getDate()}: </span>${esc(e.title)}</h4><div class="meta">${parts.join(" · ")}</div>${e.desc?`<div class="desc">${esc(e.desc)}</div>`:""}${e.note?`<div class="note">${esc(e.note)}</div>`:""}${evFlyer(e)}<div class="dd-actions">${evLink(e)}${addCal(e)}</div></div>
     <span class="tag t-${e.bye?"bye":k}">${e.bye?"BYE":label[k]}</span></li>`}).join("");
 }
 // Map searches for each venue name used in the schedule.
@@ -575,6 +578,7 @@ function calInfo(e){
   if(e.end){const n=Math.round((new Date(e.end+"T12:00")-new Date(e.d+"T12:00"))/864e5)+1;info.rrule="RRULE:FREQ=DAILY;COUNT="+n}
   return info;
 }
+function evFlyer(e){return e.flyer?`<a class="flyer" href="${esc(e.flyer.src)}" target="_blank" rel="noopener"><img src="${esc(e.flyer.src)}" alt="${esc(e.flyer.alt)}" loading="lazy"><span>View flyer <span aria-hidden="true">→</span></span></a>`:""}
 function evLink(e){return e.link?`<a class="addcal ev-link" href="${esc(e.link.url)}" target="_blank" rel="noopener">${esc(e.link.label||"Sign up")}<span class="sr-only">: ${esc(e.title)} (opens in a new tab)</span> <span aria-hidden="true">→</span></a>`:""}
 function calPlace(e){return e.where&&e.where!=="TBD"?(e.map?e.where:(MAPQ[e.where]||e.where)):""}
 function gcalUrl(e){
@@ -594,7 +598,7 @@ function renderDetail(){
   if(!evs.length)h+='<p class="hint">Nothing scheduled this day.</p>';
   h+=evs.map(e=>{const k=e.bye?"bye":teamOf(e);const u=mapUrl(e);
     const bits=[];if(e.ha)bits.push(e.ha);if(e.t)bits.push(fmtT(e.t)+(e.tEnd?"–"+fmtT(e.tEnd):""));if(e.where)bits.push(esc(e.where));
-    return `<div class="dd-ev"><span class="tag t-${k}">${e.bye?"BYE":label[teamOf(e)]}</span><div style="min-width:0"><b>${esc(e.title)}</b><div class="meta">${bits.join(" · ")}</div>${e.note?`<div class="note">${esc(e.note)}</div>`:""}<div class="dd-actions">${evLink(e)}${u?`<a class="dir" href="${esc(u)}" target="_blank" rel="noopener">Get directions <span aria-hidden="true">→</span></a>`:""}${addCal(e)}</div></div></div>`}).join("");
+    return `<div class="dd-ev"><span class="tag t-${k}">${e.bye?"BYE":label[teamOf(e)]}</span><div style="min-width:0"><b>${esc(e.title)}</b><div class="meta">${bits.join(" · ")}</div>${e.note?`<div class="note">${esc(e.note)}</div>`:""}${evFlyer(e)}<div class="dd-actions">${evLink(e)}${u?`<a class="dir" href="${esc(u)}" target="_blank" rel="noopener">Get directions <span aria-hidden="true">→</span></a>`:""}${addCal(e)}</div></div></div>`}).join("");
   el.innerHTML=h;
 }
 const keyOf=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
