@@ -636,7 +636,7 @@ function renderSponsors(){
   let h="";
   TIERS.slice(0,2).forEach(t=>{
     const list=SPONSORS.filter(s=>s.tier===t.id);
-    h+=`<div class="tier-block"><div class="tier-label">${t.name}</div><div class="sponsors ${t.id}">${list.map(tile).join("")}${list.length<2?open(t):""}</div></div>`;
+    h+=`<div class="tier-block"><div class="tier-label">${t.name}</div><div class="sponsors ${t.id}">${list.map(tile).join("")}${(t.id==="orange"||list.length<2)?open(t):""}</div></div>`;
   });
   const whites=SPONSORS.filter(s=>s.tier==="white");
   if(whites.length)h+=`<div class="tier-block"><div class="tier-label">White Level</div><div class="names">${whites.map(s=>`<span>${esc(s.name)}</span>`).join("")}</div></div>`;
