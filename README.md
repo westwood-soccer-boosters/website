@@ -107,8 +107,9 @@ You can tell Claude these names, or search for them if you edit the file yoursel
 
 1. GitHub: **github.com/westwood-soccer-boosters → People → Invite member**, and make them an **Owner**.
 2. Give them access to **wwsbooster@gmail.com** (share or reset the password; keep passwords out of this file).
-3. Point them to this handbook.
-4. Once they’re set, remove yourself or lower your role under **People**.
+3. Hand over the **backup codes** and password manager access in person or privately (see section 9). Never email them or put them here.
+4. Point them to this handbook, and have them go through the checklist in section 9.
+5. Once they’re set, remove yourself or lower your role under **People**.
 
 ---
 
@@ -117,3 +118,25 @@ You can tell Claude these names, or search for them if you edit the file yoursel
 - The site meets accessibility standards (WCAG 2.1 AA) and works on phones. Keep it that way: photos need descriptions, and flyers should be posted as text, not just images.
 - Players are minors. Post only what’s listed above for rosters, and check with the coach before adding player names or photos.
 - Never post passwords, access codes, or personal phone numbers on the site or in this repository. The repository is public.
+
+---
+
+## 9. Account security checklist
+
+The website itself has nothing secret in it. The risk is someone getting into one of the accounts, so check these once a season and at every handoff.
+
+- [ ] **wwsbooster@gmail.com:** 2-step verification ON. This is the most important one, because every other account is registered to this email.
+- [ ] **GitHub:** 2-step verification ON for every person in the organization. Turn it on for your own account *before* using **Organization → Settings → Authentication security → Require two-factor authentication**, because that setting removes anyone who doesn’t have it yet.
+- [ ] **GitHub → website → Settings → Pages:** “Enforce HTTPS” is checked.
+- [ ] **GitHub → People:** only current board members. Remove anyone who has left.
+- [ ] **Porkbun:** 2-step verification ON and **Domain Lock** ON, so the domain can’t be moved away.
+- [ ] **Cheddar Up, SignUpGenius, Square, Canva, Instagram, X:** 2-step verification ON where offered.
+- [ ] **Google reimbursement form:** only board members can see responses (they include receipts).
+- [ ] **SignUpGenius committee access code:** shared in the team app only, and changed each season.
+
+**Backup codes** (the one-time codes you get when you turn on 2-step verification) let you back in if you lose your phone. Treat them like passwords:
+
+- Keep them in a **password manager** the board controls (for example Bitwarden, 1Password, or Google Password Manager on the club account), or print them and keep them somewhere safe.
+- **Never** put them in this repository, on the website, in a group chat, or in an email.
+- Hand them to the next person privately, along with the passwords, at handoff.
+- After you use a code it’s gone. If you run low, make a new set and replace the old ones.
