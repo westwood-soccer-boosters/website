@@ -183,6 +183,9 @@ button.day:hover{background:var(--line)}
 /* add to calendar + subscribe */
 .addcal{display:inline-block;margin-top:4px;padding-block:4px;font-weight:700;font-size:.88rem;color:var(--fg);text-underline-offset:2px}
 .dd-actions{display:flex;flex-wrap:wrap;gap:4px 16px}
+.ev-link{color:var(--primary)}
+:root[data-theme="dark"] .ev-link{color:var(--varsity)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ev-link{color:var(--varsity)}}
 .app-note{margin:20px 0 0;display:flex;gap:12px;align-items:center;background:var(--primary);color:#fff;border-radius:10px;padding:14px 18px;font-size:1.02rem}
 .app-note .fa-icon{background:#fff;color:var(--primary)}
 /* team families alert */
@@ -388,6 +391,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="links">
       <a class="lnk" href="https://team-booster-2026-2027.cheddarup.com" target="_blank" rel="noopener"><b>Pay Dues &amp; Fees</b><span>Player fees, banquet tickets and team meals on Cheddar Up.</span><em>Open Cheddar Up <span aria-hidden="true">→</span></em></a>
       <a class="lnk" href="https://team-sponsorship-2026-copy-25932.cheddarup.com" target="_blank" rel="noopener"><b>Become a Sponsor</b><span>Corporate and community partner sponsorships for local businesses.</span><em>Sponsor the Warriors <span aria-hidden="true">→</span></em></a>
+      <a class="lnk" href="https://2027-kick-off-dinner-copy.cheddarup.com" target="_blank" rel="noopener"><b>Kick-Off Dinner Tickets</b><span>Thursday, Dec 10, 6–8 PM in the Westwood Cafeteria. Sign up and pay on Cheddar Up.</span><em>Get tickets <span aria-hidden="true">→</span></em></a>
       <a class="lnk" href="#signups"><b>Volunteer</b><span>Concessions, team dinners, coaches’ meals and committees. Every sign-up is listed below.</span><em>See volunteer sign-ups <span aria-hidden="true">↓</span></em></a>
       <div class="lnk static"><b>Team Families</b><span>RSVPs, reminders, team chat and game-day updates live in the team app.</span><em>Ask your coach for the invite</em></div>
       <a class="lnk" href="https://docs.google.com/forms/d/e/1FAIpQLSfAwgeUz1jByMAnsikXa-u4PCDgait42lfF33AfzZX8-jUCWw/viewform" target="_blank" rel="noopener"><b>Submit a Reimbursement</b><span>Paid for something for the team or booster club? Send your receipt to the treasurer.</span><em>Open reimbursement form <span aria-hidden="true">→</span></em></a>
@@ -457,7 +461,7 @@ const MEETINGS=[[2026,10],[2027,0],[2027,1],[2027,2],[2027,3],[2027,4]].map(([y,
 const EVENTS=[
   ...MEETINGS,
   {d:"2026-12-01",t:"18:00",tEnd:"21:00",title:"Coats for Kids",team:"both",kind:"event",where:"Junior League of Austin, 5330 Bluffstone Lane, Austin, TX 78759",map:"https://www.google.com/maps/search/5330+Bluffstone+Lane,+Austin,+Texas,+78759",desc:"Team bonding off the field: the girls will sort coats for the 40th anniversary of Coats for Kids."},
-  {d:"2026-12-10",t:"18:00",tEnd:"20:00",title:"Kick-Off Dinner",team:"all",kind:"event",where:"Westwood Cafeteria"},
+  {d:"2026-12-10",t:"18:00",tEnd:"20:00",title:"Kick-Off Dinner",team:"all",kind:"event",where:"Westwood Cafeteria",link:{url:"https://2027-kick-off-dinner-copy.cheddarup.com",label:"Get tickets"}},
   ...pair("2026-12-11","Georgetown (Scrimmage)","Away","Georgetown High School",null,"17:15","19:00"),
   ...pair("2026-12-15","Hutto (Scrimmage)","Home",HOME,null,"17:15","19:00"),
   ...pair("2026-12-17","Vandegrift (Scrimmage)","Away","Vandegrift High School",null,"17:15","19:00"),
@@ -527,7 +531,7 @@ function renderList(){
     if(e.bye)parts.push("Open date on the district schedule");
     return `<li class="ev">
     <div class="date" aria-hidden="true"><small>${MON[d.getMonth()]}</small><b>${d.getDate()}</b></div>
-    <div style="min-width:0"><h4><span class="sr-only">${DOWL[d.getDay()]},${MONL[d.getMonth()]} ${d.getDate()}: </span>${esc(e.title)}</h4><div class="meta">${parts.join(" · ")}</div>${e.desc?`<div class="desc">${esc(e.desc)}</div>`:""}${e.note?`<div class="note">${esc(e.note)}</div>`:""}${addCal(e)}</div>
+    <div style="min-width:0"><h4><span class="sr-only">${DOWL[d.getDay()]},${MONL[d.getMonth()]} ${d.getDate()}: </span>${esc(e.title)}</h4><div class="meta">${parts.join(" · ")}</div>${e.desc?`<div class="desc">${esc(e.desc)}</div>`:""}${e.note?`<div class="note">${esc(e.note)}</div>`:""}<div class="dd-actions">${evLink(e)}${addCal(e)}</div></div>
     <span class="tag t-${e.bye?"bye":k}">${e.bye?"BYE":label[k]}</span></li>`}).join("");
 }
 // Map searches for each venue name used in the schedule.
@@ -570,10 +574,11 @@ function calInfo(e){
   if(e.end){const n=Math.round((new Date(e.end+"T12:00")-new Date(e.d+"T12:00"))/864e5)+1;info.rrule="RRULE:FREQ=DAILY;COUNT="+n}
   return info;
 }
+function evLink(e){return e.link?`<a class="addcal ev-link" href="${esc(e.link.url)}" target="_blank" rel="noopener">${esc(e.link.label||"Sign up")}<span class="sr-only">: ${esc(e.title)} (opens in a new tab)</span> <span aria-hidden="true">→</span></a>`:""}
 function calPlace(e){return e.where&&e.where!=="TBD"?(e.map?e.where:(MAPQ[e.where]||e.where)):""}
 function gcalUrl(e){
   const c=calInfo(e);
-  const p=new URLSearchParams({action:"TEMPLATE",text:calTitle(e),dates:c.s+"/"+c.e,ctz:"America/Chicago",details:(e.desc?e.desc+"\n\n":"")+"Full schedule: "+SITE});
+  const p=new URLSearchParams({action:"TEMPLATE",text:calTitle(e),dates:c.s+"/"+c.e,ctz:"America/Chicago",details:(e.desc?e.desc+"\n\n":"")+(e.link?(e.link.label||"Sign up")+": "+e.link.url+"\n\n":"")+"Full schedule: "+SITE});
   const place=calPlace(e);if(place)p.set("location",place);
   if(c.rrule)p.set("recur",c.rrule);
   return "https://calendar.google.com/calendar/render?"+p.toString();
@@ -588,7 +593,7 @@ function renderDetail(){
   if(!evs.length)h+='<p class="hint">Nothing scheduled this day.</p>';
   h+=evs.map(e=>{const k=e.bye?"bye":teamOf(e);const u=mapUrl(e);
     const bits=[];if(e.ha)bits.push(e.ha);if(e.t)bits.push(fmtT(e.t)+(e.tEnd?"–"+fmtT(e.tEnd):""));if(e.where)bits.push(esc(e.where));
-    return `<div class="dd-ev"><span class="tag t-${k}">${e.bye?"BYE":label[teamOf(e)]}</span><div style="min-width:0"><b>${esc(e.title)}</b><div class="meta">${bits.join(" · ")}</div><div class="dd-actions">${u?`<a class="dir" href="${esc(u)}" target="_blank" rel="noopener">Get directions <span aria-hidden="true">→</span></a>`:""}${addCal(e)}</div></div></div>`}).join("");
+    return `<div class="dd-ev"><span class="tag t-${k}">${e.bye?"BYE":label[teamOf(e)]}</span><div style="min-width:0"><b>${esc(e.title)}</b><div class="meta">${bits.join(" · ")}</div><div class="dd-actions">${evLink(e)}${u?`<a class="dir" href="${esc(u)}" target="_blank" rel="noopener">Get directions <span aria-hidden="true">→</span></a>`:""}${addCal(e)}</div></div></div>`}).join("");
   el.innerHTML=h;
 }
 const keyOf=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
