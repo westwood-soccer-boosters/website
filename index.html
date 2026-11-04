@@ -460,7 +460,7 @@ const MEETING_MOVES={"2026-11-04":["2026-11-11","Moved from Wed, Nov 4"]};
 const MEETINGS=[[2026,10],[2027,0],[2027,1],[2027,2],[2027,3],[2027,4]].map(([y,m])=>{const o=firstWed(y,m),mv=MEETING_MOVES[o];return {d:mv?mv[0]:o,t:"18:00",tEnd:"19:00",title:"Booster Club Meeting",team:"all",kind:"event",...(mv&&mv[1]?{note:mv[1]}:{})}});
 const EVENTS=[
   ...MEETINGS,
-  {d:"2026-11-17",title:"Spirit Night at Everbowl",team:"all",kind:"event",where:"Everbowl, 13429 N Hwy 183 #110, Austin, TX 78750",map:"https://www.google.com/maps/search/?api=1&query=Everbowl+13429+N+Hwy+183+%23110+Austin+TX+78750",desc:"Grab a bowl at the Everbowl off 183 and Anderson Mill to support Westwood Women’s Soccer."},
+  {d:"2026-11-17",title:"Spirit Night at Everbowl",team:"all",kind:"event",where:"Everbowl, 13429 N Hwy 183 #110, Austin, TX 78750",map:"https://www.google.com/maps/search/?api=1&query=Everbowl+13429+N+Hwy+183+%23110+Austin+TX+78750",desc:"Support our team by grabbing a healthy treat at Everbowl!"},
   {d:"2026-12-01",t:"18:00",tEnd:"21:00",title:"Coats for Kids",team:"both",kind:"event",note:"Team only event",desc:"Team bonding off the field: the girls will sort coats for the 40th anniversary of Coats for Kids."},
   {d:"2026-12-10",t:"18:00",tEnd:"20:00",title:"Kick-Off Dinner",team:"all",kind:"event",where:"Westwood Cafeteria",link:{url:"https://2027-kick-off-dinner-copy.cheddarup.com",label:"Get tickets"}},
   ...pair("2026-12-11","Georgetown (Scrimmage)","Away","Georgetown High School",null,"17:15","19:00"),
