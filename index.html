@@ -451,7 +451,9 @@ const pair=(d,title,ha,where,note,jv=JV,v=V)=>[
 const bye=d=>({d,title:"BYE (no game)",team:"both",kind:"game",bye:true});
 // Booster meetings: first Wednesday of each month, 6–7 PM, Nov 2026 – May 2027 (no December meeting).
 const firstWed=(y,m)=>{const d=new Date(y,m,1);d.setDate(1+((3-d.getDay()+7)%7));return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
-const MEETINGS=[[2026,10],[2027,0],[2027,1],[2027,2],[2027,3],[2027,4]].map(([y,m])=>({d:firstWed(y,m),t:"18:00",tEnd:"19:00",title:"Booster Club Meeting",team:"all",kind:"event"}));
+// To move one meeting, add "original date":["new date","note"] below. Same 6–7 PM time.
+const MEETING_MOVES={"2026-11-04":["2026-11-11","Moved from Wed, Nov 4"]};
+const MEETINGS=[[2026,10],[2027,0],[2027,1],[2027,2],[2027,3],[2027,4]].map(([y,m])=>{const o=firstWed(y,m),mv=MEETING_MOVES[o];return {d:mv?mv[0]:o,t:"18:00",tEnd:"19:00",title:"Booster Club Meeting",team:"all",kind:"event",...(mv&&mv[1]?{note:mv[1]}:{})}});
 const EVENTS=[
   ...MEETINGS,
   {d:"2026-12-01",t:"18:00",tEnd:"21:00",title:"Coats for Kids",team:"both",kind:"event",where:"Junior League of Austin, 5330 Bluffstone Lane, Austin, TX 78759",map:"https://www.google.com/maps/search/5330+Bluffstone+Lane,+Austin,+Texas,+78759",desc:"Team bonding off the field: the girls will sort coats for the 40th anniversary of Coats for Kids."},
