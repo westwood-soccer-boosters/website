@@ -565,7 +565,7 @@ const MAPQ={
   "Lake Travis High School":"Lake Travis High School, Austin, TX",
   "Belton - Tiger Field":"Tiger Field, Belton High School, Belton, TX"
 };
-function mapUrl(e){
+function mapUrl(e){if(e.where&&/^online/i.test(e.where))return "";
   if(e.map)return e.map;
   if(!e.where||e.where==="TBD")return null;
   return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(MAPQ[e.where]||e.where+", TX");
