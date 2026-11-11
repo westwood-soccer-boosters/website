@@ -262,6 +262,9 @@ button.day:hover{background:var(--line)}
 .roster tr:last-child td{border-bottom:0}
 .roster .num{font-family:var(--display);font-size:1.4rem;font-weight:800;color:var(--varsity);width:56px;font-variant-numeric:tabular-nums}
 .roster .nm{font-weight:700}
+@media (max-width:520px){.roster th,.roster td{padding:8px 8px}.roster th:first-child,.roster td:first-child{padding-left:12px}.roster .num{width:40px}}
+.staff{margin:0;padding:12px 16px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.staff b{color:var(--fg)}
 .roster-empty{padding:28px 20px;text-align:center;color:var(--muted)}
 .roster-empty b{display:block;font-family:var(--display);text-transform:uppercase;font-size:1.3rem;color:var(--fg);margin-bottom:4px}
 /* sponsors */
@@ -715,13 +718,64 @@ document.querySelectorAll("[data-res]").forEach(b=>b.addEventListener("click",()
 }));
 renderResults();
 // Rosters: add {num:"7", name:"First Last", pos:"Midfield", grad:"2028"} to each list.
-const ROSTER={varsity:[],jv:[]};
+const ROSTER={
+  varsity:[
+    {num: "00", name: "Magnolia Mcbrearty", pos: "GK", grad: 2028},
+    {num: "1", name: "Elyse Osborn", pos: "GK", grad: 2027},
+    {num: "2", name: "Julia Ziegler", pos: "FWD", grad: 2027},
+    {num: "3", name: "Henley Patak", pos: "MID", grad: 2027},
+    {num: "4", name: "Marielle van der Meer", pos: "DEF", grad: 2028},
+    {num: "5", name: "Ella Smith", pos: "DEF", grad: 2027},
+    {num: "6", name: "Fiona Giannetti", pos: "DEF", grad: 2029},
+    {num: "7", name: "Avery Cubbage", pos: "FWD/MID/DEF", grad: 2028},
+    {num: "8", name: "Audrey Cassidy", pos: "FWD", grad: 2027},
+    {num: "9", name: "Sanya Marian", pos: "MID", grad: 2027},
+    {num: "10", name: "Jaelynn Solis", pos: "MID", grad: 2027},
+    {num: "11", name: "Sam Crider", pos: "DEF", grad: 2027},
+    {num: "12", name: "Charlotte Holland", pos: "DEF", grad: 2027},
+    {num: "13", name: "Chase Baker", pos: "DEF", grad: 2029},
+    {num: "16", name: "Elise Cubbage", pos: "FWD/MID/DEF", grad: 2030},
+    {num: "17", name: "Anica Marian", pos: "FWD", grad: 2030},
+    {num: "18", name: "Elizabeth Miller", pos: "DEF", grad: 2028},
+    {num: "19", name: "Erin Lott", pos: "MID/FWD", grad: 2028},
+    {num: "21", name: "Kensington Maynes", pos: "MID/FWD", grad: 2028},
+    {num: "22", name: "Emma Abney", pos: "MID", grad: 2030},
+    {num: "23", name: "Anna Pirttima", pos: "DEF", grad: 2030},
+    {num: "", name: "Ophelia Ostebo", pos: "Manager", grad: 2027},
+    {num: "", name: "Isabella Keckler", pos: "Manager", grad: 2027}
+  ],
+  jv:[
+    {num: "00", name: "Harper Patak", pos: "GK", grad: 2030},
+    {num: "0", name: "Raiyasri Mukherjee", pos: "GK", grad: 2030},
+    {num: "1", name: "Saoirse Kuss", pos: "GK", grad: 2030},
+    {num: "2", name: "Natalie Schneider", pos: "MID", grad: 2030},
+    {num: "3", name: "Avery Walters", pos: "DEF", grad: 2030},
+    {num: "4", name: "Alex Shaddock", pos: "MID/FWD", grad: 2030},
+    {num: "5", name: "Georgia Lueck", pos: "MID/FWD", grad: 2029},
+    {num: "6", name: "Emerson Cypert", pos: "FWD", grad: 2029},
+    {num: "7", name: "Camryn O'Leary-Orta", pos: "FWD", grad: 2029},
+    {num: "8", name: "Juliana Llano", pos: "FWD", grad: 2030},
+    {num: "9", name: "Makayla White", pos: "MID/FWD", grad: 2029},
+    {num: "10", name: "Reagan Weaver", pos: "DEF", grad: 2030},
+    {num: "11", name: "Gabby Vaamonde Salazar", pos: "MID/FWD", grad: 2029},
+    {num: "12", name: "Eve Garcia", pos: "DEF", grad: 2029},
+    {num: "13", name: "Elizabeth Kirwin", pos: "MID/FWD", grad: 2029},
+    {num: "14", name: "Ella Koebel", pos: "DEF", grad: 2030},
+    {num: "15", name: "Anna Pirttima", pos: "DEF", grad: 2030},
+    {num: "16", name: "Katie Zheng", pos: "MID", grad: 2030},
+    {num: "18", name: "Esa Windwillow", pos: "FWD", grad: 2030},
+    {num: "", name: "Rebeca Guerra Espino", pos: "Manager", grad: 2030},
+    {num: "", name: "Madisyn Rios", pos: "Manager", grad: 2030}
+  ]
+};
+const STAFF={varsity:"Head Coach Malcolm F. Framjee (14th season) · Assistant Coach Keelie Kish (2nd season)",jv:"Head Coach Malcolm F. Framjee (14th season) · Assistant Coach Keelie Kish (2nd season)"};
 let rosterTeam="varsity";
 function renderRoster(){
-  const list=ROSTER[rosterTeam].slice().sort((a,b)=>(+a.num||999)-(+b.num||999));
+  const rk=p=>p.num===""||p.num==null?1000:p.num==="00"?-1:(isNaN(+p.num)?999:+p.num);
+  const list=ROSTER[rosterTeam].slice().sort((a,b)=>rk(a)-rk(b));
   const el=document.getElementById("roster");
   if(!list.length){el.innerHTML=`<div class="roster-empty"><b>${rosterTeam==="jv"?"JV":"Varsity"} roster coming soon</b>Check back once the team is set.</div>`;return}
-  el.innerHTML=`<table class="roster"><caption class="sr-only">${rosterTeam==="jv"?"JV":"Varsity"} roster</caption><thead><tr><th>#</th><th>Player</th><th>Position</th><th>Class</th></tr></thead><tbody>${list.map(p=>`<tr><td class="num">${esc(p.num||"")}</td><td class="nm">${esc(p.name)}</td><td>${esc(p.pos||"")}</td><td>${esc(p.grad||"")}</td></tr>`).join("")}</tbody></table>`;
+  el.innerHTML=`<table class="roster"><caption class="sr-only">${rosterTeam==="jv"?"JV":"Varsity"} roster</caption><thead><tr><th>#</th><th>Player</th><th>Position</th><th>Class</th></tr></thead><tbody>${list.map(p=>`<tr><td class="num">${esc(p.num||"")}</td><td class="nm">${esc(p.name)}</td><td>${esc(p.pos||"").replace(/\//g,"/<wbr>")}</td><td>${esc(p.grad||"")}</td></tr>`).join("")}</tbody></table>${STAFF[rosterTeam]?`<p class="staff"><b>Coaches:</b> ${esc(STAFF[rosterTeam])}</p>`:""}`;
 }
 document.querySelectorAll("[data-roster]").forEach(b=>b.addEventListener("click",()=>{
   rosterTeam=b.dataset.roster;
