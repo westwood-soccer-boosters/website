@@ -56,7 +56,7 @@ You can tell Claude these names, or search for them if you edit the file yoursel
 | Part of the site | What to look for in index.html |
 |---|---|
 | Games and events (schedule and calendar) | `const EVENTS=[` |
-| Monthly booster meetings | `const MEETINGS=` (first Wednesday, 6–7 PM; December skipped) |
+| Monthly booster meetings | `const MEETINGS=` (first Wednesday, 6:30–7:30 PM online; December skipped) |
 | Scores and record | `const RESULTS={` — add lines like `"2027-01-22|varsity":"2-1"` (our score first) |
 | Varsity and JV rosters | `const ROSTER={varsity:[],jv:[]}` — number, name, position, class only |
 | Sponsors (logos, names, links) | `const SPONSORS=[` |
