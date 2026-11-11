@@ -271,9 +271,12 @@ button.day:hover{background:var(--line)}
 .sponsors.warrior{grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr))}
 .sponsors.orange{grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))}
 @media (max-width:560px){.sponsors.orange{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.names{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:8px}
+.names{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:8px}
 .names li{display:flex;flex-direction:column;gap:2px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:8px;padding:10px 14px}
 .names b{font-weight:700}
+.names li.has-logo{flex-direction:row;align-items:center;gap:12px}
+.names .nm{display:flex;flex-direction:column;gap:2px;min-width:0}
+.names img{flex:none;width:88px;height:72px;object-fit:contain;background:#fff;border-radius:6px;padding:4px}
 .names span{color:var(--muted);font-size:.9rem}
 .tiers-head{font-size:1.4rem;margin:8px 0 12px}
 .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
@@ -639,7 +642,7 @@ function renderNext(){
 // Sponsors: add {name:"Business Name", tier:"warrior"|"orange"|"white", url:"https://...", logo:"logo file"} as they sign on.
 // Warrior and Orange include logo + business link on the website; White is listed by name.
 const SPONSORS=[
-  {name:"Dimensional Roofing & Diagnostics", tier:"white", url:"", logo:"", slogan:"Dimensional Roofing: Your Trusted Texas Roofer!"},
+  {name:"Dimensional Roofing & Diagnostics", tier:"white", url:"", logo:"sponsors/dimensional-roofing.png", slogan:"Dimensional Roofing: Your Trusted Texas Roofer!"},
   {name:"FASTSIGNS", tier:"warrior", url:"https://www.fastsigns.com/anderson-mill-austin-tx/", logo:"sponsors/fastsigns.png", slogan:"Burnet Rd • Anderson Mill • Leander-Cedar Park • Georgetown"},
   {name:"Burk Family Dentistry", tier:"orange", url:"https://www.burkfamilydentistry.com", logo:"sponsors/burk-family-dentistry.png", slogan:"Be the reason someone smiles today!"},
   {name:"First Touch Soccer Academy", tier:"orange", url:"https://www.firsttouchaustin.com/", logo:"sponsors/first-touch-soccer-academy.png", slogan:"First Touch Soccer Academy of Austin — Where every first touch builds elite athletes and unbreakable teammates. Proud sponsors of Westwood Women’s Soccer"}
@@ -659,7 +662,7 @@ function renderSponsors(){
     h+=`<div class="tier-block"><div class="tier-label">${t.name}</div><div class="sponsors ${t.id}">${list.map(tile).join("")}${(t.id==="orange"||list.length<2)?open(t):""}</div></div>`;
   });
   const whites=SPONSORS.filter(s=>s.tier==="white");
-  if(whites.length)h+=`<div class="tier-block"><div class="tier-label">White Level</div><ul class="names">${whites.map(s=>`<li><b>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`:esc(s.name)}</b>${s.slogan?`<span>${esc(s.slogan)}</span>`:""}</li>`).join("")}</ul></div>`;
+  if(whites.length)h+=`<div class="tier-block"><div class="tier-label">White Level</div><ul class="names">${whites.map(s=>`<li class="${s.logo?"has-logo":""}">${s.logo?`<img src="${esc(s.logo)}" alt="${esc(s.name)} logo">`:""}<div class="nm"><b>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`:esc(s.name)}</b>${s.slogan?`<span>${esc(s.slogan)}</span>`:""}</div></li>`).join("")}</ul></div>`;
   document.getElementById("sponsor-wall").innerHTML=h;
   document.getElementById("tiers").innerHTML=TIERS.map(t=>`<div class="tier ${t.id}"><h4>${t.name}</h4><div class="price">${t.price}</div><ul>${t.perks.map(p=>`<li>${p}</li>`).join("")}</ul><a href="${SPONSOR_URL}" target="_blank" rel="noopener">Sponsor at this level <span aria-hidden="true">→</span></a></div>`).join("");
 }
