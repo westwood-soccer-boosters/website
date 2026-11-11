@@ -18,7 +18,7 @@ The accounts stay the same from year to year. The **links marked “2026–27 on
 |---|---|---|
 | Domain name (wwsboosters.org) | **Porkbun** (porkbun.com) | Auto-renew ON. Renews once a year, under $12. Don’t change the DNS records (see section 6). |
 | Website hosting | **GitHub**: organization `westwood-soccer-boosters`, repository `website` | Free. GitHub Pages publishes the `main` branch automatically. |
-| Dues, fees, team meals | **Cheddar Up** | A new page each season. **2026–27 only:** https://team-booster-2026-2027.cheddarup.com |
+| Booster dues and fees | **Cheddar Up** | A new page each season. **2026–27 only:** https://team-booster-2026-2027.cheddarup.com |
 | Sponsorships | **Cheddar Up** | A new page each season. **2026–27 only:** https://team-sponsorship-2026-copy-25932.cheddarup.com |
 | Volunteer and committee sign-ups | **SignUpGenius** | New sign-ups each season. **2026–27 only:** https://www.signupgenius.com/go/10C0949AEAE22A3FEC52-66751535-westwood. Committees use an **access code**, shared in the team app only. **Never put the code on the website.** |
 | Reimbursements | **Google Form** | Linked from the Support section |
