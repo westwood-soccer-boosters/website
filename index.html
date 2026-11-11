@@ -470,16 +470,17 @@ const EVENTS=[
   ...pair("2026-12-15","Hutto (Scrimmage)","Home",HOME,null,"17:15","19:00"),
   ...pair("2026-12-17","Vandegrift (Scrimmage)","Away","Vandegrift High School",null,"17:15","19:00"),
   {d:"2026-12-28",end:"2026-12-31",t:"11:00",tEnd:"13:00",title:"Holiday Practice",team:"both",kind:"event",where:HOME},
-  {d:"2027-01-01",t:"15:00",title:"Katy Seven Lakes",team:"jv",kind:"game",ha:"Home",where:HOME},
-  {d:"2027-01-01",t:"17:00",title:"Katy Seven Lakes",team:"varsity",kind:"game",ha:"Home",where:HOME},
+  {d:"2027-01-01",t:"09:00",title:"Katy Seven Lakes",team:"varsity",kind:"game",ha:"Home",where:HOME},
   {d:"2027-01-01",title:"Varsity Sleepover",team:"varsity",kind:"event"},
-  {d:"2027-01-07",end:"2027-01-09",title:"JV Tournament",team:"jv",kind:"game",ha:"Tournament",where:"Belton"},
-  {d:"2027-01-07",t:"17:00",title:"The Woodlands",team:"varsity",kind:"game",ha:"Tournament",where:"Georgetown High School"},
-  {d:"2027-01-08",t:"12:40",title:"Highland Park",team:"varsity",kind:"game",ha:"Tournament",where:"Georgetown High School"},
-  {d:"2027-01-09",t:"18:10",title:"Dripping Springs",team:"varsity",kind:"game",ha:"Tournament",where:"Georgetown High School"},
-  {d:"2027-01-14",t:"10:50",title:"Prosper",team:"varsity",kind:"game",ha:"Tournament",where:"Georgetown High School"},
-  {d:"2027-01-15",t:"19:30",title:"SA Reagan",team:"varsity",kind:"game",ha:"Tournament",where:"Georgetown High School"},
-  {d:"2027-01-16",t:"19:30",title:"Southlake Carroll",team:"varsity",kind:"game",ha:"Tournament",where:"Georgetown High School"},
+  {d:"2027-01-07",t:"13:00",title:"Hendrickson",team:"jv",kind:"game",ha:"Tournament",where:"Belton - Tiger Field"},
+  {d:"2027-01-07",t:"15:30",title:"Robinson",team:"jv",kind:"game",ha:"Tournament",where:"Belton - Tiger Field"},
+  {d:"2027-01-09",t:"19:15",title:"Belton",team:"jv",kind:"game",ha:"Tournament",where:"Belton - Tiger Field"},
+  {d:"2027-01-07",t:"14:30",title:"McKinney North",team:"varsity",kind:"game",ha:"Tournament",where:"Georgetown High School"},
+  {d:"2027-01-08",t:"14:30",title:"Franklin",team:"varsity",kind:"game",ha:"Tournament",where:"Georgetown High School"},
+  {d:"2027-01-09",t:"12:40",title:"Highland Park",team:"varsity",kind:"game",ha:"Tournament",where:"Georgetown High School"},
+  {d:"2027-01-14",t:"10:50",title:"Flower Mound",team:"varsity",kind:"game",ha:"Tournament",where:"Georgetown High School"},
+  {d:"2027-01-15",t:"12:40",title:"Lake Creek",team:"varsity",kind:"game",ha:"Tournament",where:"Georgetown High School"},
+  {d:"2027-01-16",t:"16:20",title:"LASA",team:"varsity",kind:"game",ha:"Tournament",where:"Georgetown High School"},
   ...pair("2027-01-22","Cedar Ridge","Away","Cedar Ridge High School"),
   ...pair("2027-01-26","Stony Point","Home",HOME),
   ...pair("2027-01-29","Westlake","Away","Westlake High School"),
@@ -494,7 +495,6 @@ const EVENTS=[
   bye("2027-03-02"),
   ...pair("2027-03-05","McNeil","Home",HOME),
   ...pair("2027-03-09","Lake Travis","Away","Lake Travis High School"),
-  ...pair("2027-03-12","Cedar Park","Home",HOME),
   {d:"2027-03-15",end:"2027-03-18",title:"Spring Break Practices (mandatory)",team:"varsity",kind:"event"},
   {d:"2027-03-19",end:"2027-03-21",title:"Playoffs: Bi-District",team:"varsity",kind:"game",where:"TBD"},
   {d:"2027-03-23",end:"2027-03-24",title:"Playoffs: Area Championship",team:"varsity",kind:"game",where:"TBD"},
@@ -550,7 +550,7 @@ const MAPQ={
   "Stony Point High School":"Stony Point High School, Round Rock, TX",
   "Round Rock High School":"Round Rock High School, Round Rock, TX",
   "Lake Travis High School":"Lake Travis High School, Austin, TX",
-  "Belton":"Belton, TX"
+  "Belton - Tiger Field":"Tiger Field, Belton High School, Belton, TX"
 };
 function mapUrl(e){
   if(e.map)return e.map;
@@ -685,7 +685,7 @@ renderSpotlight();
 const RESULTS={};
 let resTeam="varsity";
 const isScrim=e=>/Scrimmage/.test(e.title);
-const isDistrict=e=>(e.ha==="Home"||e.ha==="Away")&&!isScrim(e)&&e.d>="2027-01-22"&&e.d<="2027-03-12";
+const isDistrict=e=>(e.ha==="Home"||e.ha==="Away")&&!isScrim(e)&&e.d>="2027-01-22"&&e.d<="2027-03-09";
 function tally(list){const r={w:0,l:0,t:0,gf:0,ga:0};list.forEach(g=>{r.gf+=g.us;r.ga+=g.them;g.us>g.them?r.w++:g.us<g.them?r.l++:r.t++});return r}
 function renderResults(){
   const played=EVENTS.filter(e=>e.kind==="game"&&e.team===resTeam&&RESULTS[e.d+"|"+e.team]).map(e=>{const[us,them]=RESULTS[e.d+"|"+e.team].split("-").map(Number);return{...e,us,them}}).sort((a,b)=>a.d<b.d?1:-1);
