@@ -645,6 +645,8 @@ const SPONSORS=[
   {name:"Dimensional Roofing & Diagnostics", tier:"white", url:"", logo:"sponsors/dimensional-roofing.png", slogan:"Dimensional Roofing: Your Trusted Texas Roofer!"},
   {name:"FASTSIGNS", tier:"warrior", url:"https://www.fastsigns.com/anderson-mill-austin-tx/", logo:"sponsors/fastsigns.png", slogan:"Burnet Rd • Anderson Mill • Leander-Cedar Park • Georgetown"},
   {name:"Burk Family Dentistry", tier:"orange", url:"https://www.burkfamilydentistry.com", logo:"sponsors/burk-family-dentistry.png", slogan:"Be the reason someone smiles today!"},
+  {name:"Capital Cruises", tier:"orange", url:"https://capitalcruises.com", logo:"sponsors/capital-cruises.png", bg:"#000", slogan:"Lake events for all occasions! Conveniently located in downtown Austin!"},
+  {name:"Austin Orthodontics: Seth R. Briggs DDS", tier:"orange", url:"", logo:"sponsors/austin-orthodontics.png", slogan:"Happy & Healthy Smiles Start Here"},
   {name:"First Touch Soccer Academy", tier:"orange", url:"https://www.firsttouchaustin.com/", logo:"sponsors/first-touch-soccer-academy.png", slogan:"First Touch Soccer Academy of Austin — Where every first touch builds elite athletes and unbreakable teammates. Proud sponsors of Westwood Women’s Soccer"}
 ];
 const SPONSOR_URL="https://team-sponsorship-2026-copy-25932.cheddarup.com";
@@ -654,7 +656,7 @@ const TIERS=[
   {id:"white",name:"White Level",price:"$250",perks:["Slogan announced at 2 home games","2 social media shout-outs","Free admission to Sponsor Night"]}
 ];
 function renderSponsors(){
-  const tile=s=>`<a class="sp" href="${esc(s.url||SPONSOR_URL)}" target="_blank" rel="noopener">${s.logo?`<img src="${esc(s.logo)}" alt="${esc(s.name)}">`:`<b>${esc(s.name)}</b>`}</a>`;
+  const tile=s=>`<a class="sp" href="${esc(s.url||SPONSOR_URL)}" target="_blank" rel="noopener"${s.bg?` style="background:${esc(s.bg)}"`:""}>${s.logo?`<img src="${esc(s.logo)}" alt="${esc(s.name)}">`:`<b>${esc(s.name)}</b>`}</a>`;
   const open=t=>`<a class="sp open" href="${SPONSOR_URL}" target="_blank" rel="noopener"><b>Your logo here</b><span>${t.name} · ${t.price} <span aria-hidden="true">→</span></span></a>`;
   let h="";
   TIERS.slice(0,2).forEach(t=>{
@@ -685,7 +687,7 @@ function renderSpotlight(){
   }
   el.className="spotlight";
   const url=s.url||SPONSOR_URL;
-  el.innerHTML=`<div class="spot-logo">${s.logo?`<img src="${esc(s.logo)}" alt="${esc(s.name)} logo">`:`<b aria-hidden="true">${esc(s.name)}</b>`}</div><div style="min-width:0"><div class="eyebrow">Featured partner of the week</div><p class="spot-name">${esc(s.name)}</p>${s.slogan?`<p class="spot-line">${esc(s.slogan)}</p>`:`<p class="spot-line">Thank you for supporting Westwood Women’s Soccer.</p>`}</div><a class="spot-cta" href="${esc(url)}" target="_blank" rel="noopener">Visit ${esc(s.name)} <span aria-hidden="true">→</span></a>`;
+  el.innerHTML=`<div class="spot-logo"${s.bg?` style="background:${esc(s.bg)}"`:""}>${s.logo?`<img src="${esc(s.logo)}" alt="${esc(s.name)} logo"${s.bg?` style="background:${esc(s.bg)}"`:""}>`:`<b aria-hidden="true">${esc(s.name)}</b>`}</div><div style="min-width:0"><div class="eyebrow">Featured partner of the week</div><p class="spot-name">${esc(s.name)}</p>${s.slogan?`<p class="spot-line">${esc(s.slogan)}</p>`:`<p class="spot-line">Thank you for supporting Westwood Women’s Soccer.</p>`}</div><a class="spot-cta" href="${esc(url)}" target="_blank" rel="noopener">Visit ${esc(s.name)} <span aria-hidden="true">→</span></a>`;
 }
 renderSpotlight();
 // Results: add "date|team":"our score-their score" after each game, e.g. "2026-12-11|varsity":"3-1".

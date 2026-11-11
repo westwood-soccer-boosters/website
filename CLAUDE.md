@@ -13,7 +13,7 @@ This repository is the live site at https://wwsboosters.org, published by GitHub
 - `MEETINGS`: first Wednesday of each listed month, 6–7 PM. December is intentionally skipped. To move one meeting, add it to `MEETING_MOVES` ("original date":["new date","note"]).
 - `RESULTS`: `"YYYY-MM-DD|varsity":"us-them"`. Scrimmages (title contains "Scrimmage") are listed but not counted. District = Home/Away non-scrimmage games from Jan 22 to Mar 9, 2027.
 - `ROSTER`: `{varsity:[{num,name,pos,grad}], jv:[...]}`. Minors: post only number, name, position and graduation year.
-- `SPONSORS`: `{name, tier:"warrior"|"orange"|"white", url, logo, slogan}`. Warrior and Orange get logo, link and the weekly Featured Partner spotlight; White is listed by name and slogan, with a small logo if one is given; it links only if `url` is set.
+- `SPONSORS`: `{name, tier:"warrior"|"orange"|"white", url, logo, slogan, bg}` (`bg` is optional, e.g. "#000" for a white-on-black logo). Warrior and Orange get logo, link and the weekly Featured Partner spotlight; White is listed by name and slogan, with a small logo if one is given; it links only if `url` is set.
 - `TIERS`: sponsor levels and perks. Must match the Cheddar Up sponsorship page.
 - Season-specific links: the Cheddar Up dues link (Support section), the sponsorship link (`SPONSOR_URL` and the Support card) and the SignUpGenius links (`#signups`) are for 2026–27 only. Each new season they get new links; ask the user for them rather than reusing old ones.
 - `SPOTLIGHT_PINS`: `{"<Monday YYYY-MM-DD>":"Sponsor Name"}` to pin a sponsor to a week.
