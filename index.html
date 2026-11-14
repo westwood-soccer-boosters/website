@@ -242,6 +242,17 @@ button.day:hover{background:var(--line)}
 .su-later{grid-area:go;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);border:1px solid currentColor;border-radius:4px;padding:3px 8px;white-space:nowrap}
 :root[data-theme="dark"] .su-later{color:var(--varsity)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .su-later{color:var(--varsity)}}
+/* warrior sponsor band (top of page) */
+.warrior-band{background:var(--surface);border-bottom:1px solid var(--line);padding-block:14px}
+.warrior-band .wrap{display:flex;align-items:center;gap:12px 24px;flex-wrap:wrap}
+.wb-label{margin:0;font-family:var(--display);text-transform:uppercase;font-weight:800;font-size:1.05rem;letter-spacing:.04em;line-height:1.1;max-width:15ch}
+.wb-logos{display:flex;flex-wrap:wrap;gap:12px;flex:1;min-width:0}
+.wb-logo{display:grid;place-items:center;height:84px;width:260px;max-width:100%;padding:8px 12px;background:#fff;border:1px solid var(--line);border-radius:10px;text-decoration:none;transition:border-color .15s}
+.wb-logo:hover{border-color:var(--primary)}
+.wb-logo img{display:block;width:100%;height:68px;object-fit:contain}
+.wb-logo b{font-family:var(--display);text-transform:uppercase;font-size:1.2rem;color:#141110}
+.wb-cta{font-weight:700;font-size:.92rem;color:var(--fg);white-space:nowrap;padding-block:6px}
+@media (max-width:640px){.wb-label{max-width:none;flex-basis:100%;font-size:.95rem}.wb-logos{flex-basis:100%}.wb-logo{flex:1 1 140px;width:auto;height:72px}.wb-logo img{height:56px}}
 /* featured partner of the week */
 .spot-wrap{padding-top:24px}
 .spotlight{display:grid;grid-template-columns:auto 1fr auto;gap:12px 20px;align-items:center;background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--primary);border-radius:10px;padding:14px 18px}
@@ -327,6 +338,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="board" id="next"></div>
   </div>
 </header>
+
+<section class="warrior-band" id="warrior-band" aria-label="Warrior Level sponsors" hidden></section>
 
 <main id="main" tabindex="-1">
 <div class="wrap alert-wrap"><div class="family-alert" role="note" aria-label="Team families">
@@ -673,6 +686,11 @@ function renderSponsors(){
   const whites=SPONSORS.filter(s=>s.tier==="white");
   if(whites.length)h+=`<div class="tier-block"><div class="tier-label">White Level</div><ul class="names">${whites.map(s=>`<li class="${s.logo?"has-logo":""}">${s.logo?`<img src="${esc(s.logo)}" alt="${esc(s.name)} logo">`:""}<div class="nm"><b>${s.url?`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>`:esc(s.name)}</b>${s.slogan?`<span>${esc(s.slogan)}</span>`:""}</div></li>`).join("")}</ul></div>`;
   document.getElementById("sponsor-wall").innerHTML=h;
+  const wars=SPONSORS.filter(s=>s.tier==="warrior"), wb=document.getElementById("warrior-band");
+  if(wars.length){
+    wb.hidden=false;
+    wb.innerHTML=`<div class="wrap"><p class="wb-label">Thank you to our Warrior Level sponsors</p><div class="wb-logos">${wars.map(s=>`<a class="wb-logo" href="${esc(s.url||SPONSOR_URL)}" target="_blank" rel="noopener"${s.bg?` style="background:${esc(s.bg)}"`:""}>${s.logo?`<img src="${esc(s.logo)}" alt="${esc(s.name)}">`:`<b>${esc(s.name)}</b>`}<span class="sr-only"> (opens in a new tab)</span></a>`).join("")}</div><a class="wb-cta" href="#sponsors">Become a sponsor <span aria-hidden="true">→</span></a></div>`;
+  }
   document.getElementById("tiers").innerHTML=TIERS.map(t=>`<div class="tier ${t.id}"><h4>${t.name}</h4><div class="price">${t.price}</div><ul>${t.perks.map(p=>`<li>${p}</li>`).join("")}</ul><a href="${SPONSOR_URL}" target="_blank" rel="noopener">Sponsor at this level <span aria-hidden="true">→</span></a></div>`).join("");
 }
 renderSponsors();
