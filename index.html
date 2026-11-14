@@ -225,6 +225,15 @@ button.day:hover{background:var(--line)}
 .board-list .who{font-family:var(--display);text-transform:uppercase;font-weight:800;font-size:1.35rem;line-height:1.1}
 .board-contact{margin:12px 0 0;color:var(--muted)}
 .board-contact b{color:var(--fg)}
+/* yard signs */
+.yardsign{margin-top:24px;display:grid;grid-template-columns:220px 1fr;gap:20px 28px;align-items:center;background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--primary);border-radius:10px;padding:20px}
+.yardsign img{display:block;width:100%;height:auto;border-radius:50%;background:#fff}
+.yardsign h3{font-size:1.6rem;margin:2px 0 6px}
+.yardsign p{margin:0 0 8px;max-width:60ch}
+.ys-note{color:var(--muted);font-size:.88rem}
+.ys-btn{display:inline-flex;align-items:center;gap:6px;margin-top:6px;min-height:44px;padding:0 18px;border-radius:999px;background:var(--primary);color:#fff;font-weight:700;text-decoration:none}
+.ys-btn:hover{filter:brightness(1.08)}
+@media (max-width:640px){.yardsign{grid-template-columns:1fr;text-align:center}.yardsign img{width:200px;margin:0 auto}.yardsign p{margin-inline:auto}}
 /* volunteer sign-ups */
 .signups{margin-top:24px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
 .signups h3{font-size:1.5rem}
@@ -416,7 +425,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="wrap">
     <div class="sec-head"><div><div class="eyebrow">Get involved</div><h2>Support the Team</h2></div></div>
     <div class="links">
-      <a class="lnk" href="https://team-booster-2026-2027.cheddarup.com" target="_blank" rel="noopener"><b>Pay Dues &amp; Fees</b><span>Pay your booster fees on Cheddar Up.</span><em>Open Cheddar Up <span aria-hidden="true">→</span></em></a>
+      <a class="lnk" href="https://team-booster-2026-2027.cheddarup.com" target="_blank" rel="noopener"><b>Pay Dues &amp; Fees</b><span>Pay your booster fees and order yard signs on Cheddar Up.</span><em>Open Cheddar Up <span aria-hidden="true">→</span></em></a>
       <a class="lnk" href="https://team-sponsorship-2026-copy-25932.cheddarup.com" target="_blank" rel="noopener"><b>Become a Sponsor</b><span>Corporate and community partner sponsorships for local businesses.</span><em>Sponsor the Warriors <span aria-hidden="true">→</span></em></a>
       <a class="lnk" href="https://2027-kick-off-dinner-copy.cheddarup.com" target="_blank" rel="noopener"><b>Kick-Off Dinner Tickets</b><span>Thursday, Dec 10, 6–8 PM in the Westwood Cafeteria. Sign up and pay on Cheddar Up.</span><em>Get tickets <span aria-hidden="true">→</span></em></a>
       <a class="lnk" href="#signups"><b>Volunteer</b><span>Concessions, team dinners, coaches’ meals and committees. Every sign-up is listed below.</span><em>See volunteer sign-ups <span aria-hidden="true">↓</span></em></a>
@@ -424,6 +433,16 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <a class="lnk" href="https://docs.google.com/forms/d/e/1FAIpQLSfAwgeUz1jByMAnsikXa-u4PCDgait42lfF33AfzZX8-jUCWw/viewform" target="_blank" rel="noopener"><b>Submit a Reimbursement</b><span>Paid for something for the team or booster club? Send your receipt to the treasurer.</span><em>Open reimbursement form <span aria-hidden="true">→</span></em></a>
       <a class="lnk" href="https://www.instagram.com/westwoodgirlssocceratx/" target="_blank" rel="noopener"><b>Instagram</b><span>Game-day photos, highlights and announcements.</span><em>Follow @westwoodgirlssocceratx <span aria-hidden="true">→</span></em></a>
       <a class="lnk" href="https://x.com/WWGirlsSoccer" target="_blank" rel="noopener"><b>Twitter / X</b><span>Live game updates, scores and team news.</span><em>Follow @WWGirlsSoccer <span aria-hidden="true">→</span></em></a>
+    </div>
+    <div class="yardsign" id="yard-signs">
+      <img src="photos/yard-sign-2026-27.jpg" alt="Sample yard sign: a round soccer ball design reading Westwood Soccer, with the orange Westwood W, the player name Emerson and Class of 2029." width="600" height="600" loading="lazy">
+      <div>
+        <div class="eyebrow">2026–27 player yard signs</div>
+        <h3>Show your Warrior pride</h3>
+        <p>A 24-inch round soccer ball sign for your yard, printed in full color on sturdy white corrugated plastic. Each sign is personalized with your player’s name and class year.</p>
+        <p class="ys-note">Sample shown. The finished sign may look slightly different.</p>
+        <a class="ys-btn" href="https://team-booster-2026-2027.cheddarup.com" target="_blank" rel="noopener">Order a yard sign on Cheddar Up <span aria-hidden="true">→</span></a>
+      </div>
     </div>
     <div class="signups" id="signups">
       <h3>Volunteer sign-ups</h3>

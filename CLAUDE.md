@@ -18,7 +18,7 @@ This repository is the live site at https://wwsboosters.org, published by GitHub
 - Season-specific links: the Cheddar Up dues link (Support section), the sponsorship link (`SPONSOR_URL` and the Support card) and the SignUpGenius links (`#signups`) are for 2026–27 only. Each new season they get new links; ask the user for them rather than reusing old ones.
 - `SPOTLIGHT_PINS`: `{"<Monday YYYY-MM-DD>":"Sponsor Name"}` to pin a sponsor to a week.
 - `MAPQ`: venue name → Google Maps search text.
-- Support cards: `<section id="support">`. Volunteer sign-up list: `<div class="signups" id="signups">` (order: Committees and Coaches’ Meals, then Varsity, then JV). Board: `<ul class="board-list">`.
+- Support cards: `<section id="support">`. Yard signs: `<div class="yardsign" id="yard-signs">` (sample image `photos/yard-sign-2026-27.jpg` and the dues link; replace both each season). Volunteer sign-up list: `<div class="signups" id="signups">` (order: Committees and Coaches’ Meals, then Varsity, then JV). Board: `<ul class="board-list">`.
 
 ## Rules
 - Keep it accessible (WCAG 2.1 AA) and phone-friendly: alt text on every image, no auto-moving carousels, colors from the CSS tokens at the top of the style block, light and dark themes both working.
